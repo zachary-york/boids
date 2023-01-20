@@ -7,9 +7,9 @@ export class Boid {
     this.acceleration = new Victor(0, 0);
 
     // Arbitrary, tunable values
-    this.separationDistance = 10;
-    this.separationAccelWeight = 0.1;
-    this.alignmentAccelWeight = 0.1;
+    this.separationDistance = 15;
+    this.separationAccelWeight = 0.8;
+    this.alignmentAccelWeight = 0.05;
     this.cohesionWeight = 0.1;
 
     this.maxAccel = 3;
@@ -79,8 +79,13 @@ export class Boid {
   }
 
   getCohesionAccel(otherBoids) {
-    for (let other of otherBoids) {
+    const cohesionAcceleration = new Victor();
+    for (let otherBoid of otherBoids) {
+      const directionToOtherBoid = otherBoid.position
+        .clone()
+        .subtract(this.position);
+      cohesionAcceleration.add(directionToOtherBoid);
     }
-    return new Victor(0, 0);
+    return cohesionAcceleration.normalize();
   }
 }

@@ -6,8 +6,7 @@ export class SwarmDrawing {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
     this.ctx = canvas.getContext("2d");
-    this.swarm = new Swarm(200, this.canvas.width, this.canvas.height);
-    console.dir(this.swarm);
+    this.swarm = new Swarm(100, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = "forestgreen";
     this.animationIsRunning = false;
 

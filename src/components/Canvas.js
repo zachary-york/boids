@@ -11,7 +11,7 @@ const Canvas = (props) => {
       swarmDrawing.beginAnimation();
       setTimeout(() => {
         swarmDrawing.stopAnimation();
-      }, 5000);
+      }, 10000);
     }
   }, [canvasRef]);
   return <canvas id="canvas" ref={canvasRef}></canvas>;
