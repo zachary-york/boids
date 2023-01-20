@@ -11,9 +11,6 @@ const Canvas = (props) => {
     if (canvas) {
       swarmDrawing = new SwarmDrawing(canvas);
       swarmDrawing.beginAnimation();
-      setTimeout(() => {
-        swarmDrawing.stopAnimation();
-      }, 10000);
     }
   }, [canvasRef]);
 
