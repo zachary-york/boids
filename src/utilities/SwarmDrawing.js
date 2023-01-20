@@ -1,3 +1,4 @@
+import Victor from "victor";
 import { Swarm } from "./Swarm";
 
 export class SwarmDrawing {
@@ -9,10 +10,11 @@ export class SwarmDrawing {
     this.swarm = new Swarm(100, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = "forestgreen";
     this.animationIsRunning = false;
+    this.goal = new Victor();
 
     setInterval(() => {
       if (this.animationIsRunning) {
-        this.swarm.update();
+        this.swarm.update(this.goal);
         this.render(this.swarm);
       }
     }, 33);
@@ -24,6 +26,11 @@ export class SwarmDrawing {
 
   stopAnimation() {
     this.animationIsRunning = false;
+  }
+
+  updateGoal(coordinates) {
+    this.goal.x = coordinates.x;
+    this.goal.y = coordinates.y;
   }
 
   render() {

@@ -15,9 +15,9 @@ export class Swarm {
     }
   }
 
-  update() {
+  update(goal) {
     for (const boid of this.boids) {
-      boid.update(this.boids);
+      boid.update(this.boids, goal);
     }
   }
 }

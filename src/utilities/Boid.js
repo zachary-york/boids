@@ -11,12 +11,13 @@ export class Boid {
     this.separationAccelWeight = 0.8;
     this.alignmentAccelWeight = 0.05;
     this.cohesionWeight = 0.1;
+    this.goalWeight = 0.2;
 
     this.maxAccel = 3;
     this.maxVelocity = 4;
   }
 
-  update(otherBoids) {
+  update(otherBoids, goal) {
     const alignmentAcceleration = this.getAlignmentAccel(
       otherBoids
     ).multiplyScalar(this.alignmentAccelWeight);
@@ -29,10 +30,15 @@ export class Boid {
       otherBoids
     ).multiplyScalar(this.separationAccelWeight);
 
+    const goalAcceleration = this.getGoalAccel(goal).multiplyScalar(
+      this.goalWeight
+    );
+
     this.acceleration
       .add(separationAcceleration)
       .add(alignmentAcceleration)
-      .add(cohesionAcceleration);
+      .add(cohesionAcceleration)
+      .add(goalAcceleration);
 
     if (this.acceleration.magnitude() > this.maxAccel) {
       this.acceleration.normalize().multiplyScalar(this.maxAccel);
@@ -87,5 +93,9 @@ export class Boid {
       cohesionAcceleration.add(directionToOtherBoid);
     }
     return cohesionAcceleration.normalize();
+  }
+
+  getGoalAccel(goal) {
+    return goal.clone().subtract(this.position).normalize();
   }
 }
