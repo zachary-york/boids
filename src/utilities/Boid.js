@@ -8,9 +8,9 @@ export class Boid {
 
     // Arbitrary, tunable values
     this.separationDistance = 15;
-    this.separationAccelWeight = 0.8;
+    this.separationAccelWeight = 1.5;
     this.alignmentAccelWeight = 0.05;
-    this.cohesionWeight = 0.1;
+    this.cohesionWeight = 0.2;
     this.goalWeight = 0.2;
 
     this.maxAccel = 3;
